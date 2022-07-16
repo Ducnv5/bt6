@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CollectionJava8 {
+//TODO:
+//research: stream methods: creation, intermediate, termination
+//functional interface + lambda expression
+//optional
 
 	public void exercise1() {
 		List<Student> students = getStudents();
@@ -34,6 +38,7 @@ public class CollectionJava8 {
 //		for (String s : studentNames) {
 //			System.out.println(s);
 //		}
+		
 		Map<String, List<Student>> studentsByAddress = groupStudentByAddress(students);
 		for (Map.Entry<String, List<Student>> entry : studentsByAddress.entrySet()) {
 			System.out.println(entry.getKey() + entry.getValue());
@@ -61,6 +66,7 @@ public class CollectionJava8 {
 			listInt.add(s.getId());
 		}
 		int result = listInt.stream().reduce(0, Integer::sum);
+		//int result = input.stream().map(i -> i.getId()).reduce(0, (i, j) -> i+j); //ducnv
 		return result;
 	}
 
@@ -81,8 +87,9 @@ public class CollectionJava8 {
 
 	public List<String> getStudentNames(List<Student> input) {
 		// use input.toStream().map(.....)
-//			  List<String> listName =   input.stream().map(nameStudent -> nameStudent.getName());
-		return null;
+		//ducnv
+		List<String> names =   input.stream().map(nameStudent -> nameStudent.getName()).collect(Collectors.toList());
+		return names;
 	}
 
 	public Map<String, List<Student>> groupStudentByAddress(List<Student> input) {
